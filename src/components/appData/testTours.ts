@@ -1,5 +1,6 @@
 const testTours = [
   {
+    id: "321321",
     name: "Wahiba Sands and Wadi Bani Khaled",
     duration: 2,
     durationUnit: "Days",
@@ -9,6 +10,7 @@ const testTours = [
     status: "published",
   },
   {
+    id: "321321",
     name: "Wadi Shab",
     duration: 8,
     durationUnit: "Hours",
@@ -18,6 +20,7 @@ const testTours = [
     status: "published",
   },
   {
+    id: "321321",
     name: "Beach Fun",
     duration: 5,
     durationUnit: "Days",
@@ -27,6 +30,7 @@ const testTours = [
     status: "published",
   },
   {
+    id: "321321",
     name: "Camel Watching",
     duration: 3,
     durationUnit: "Days",

@@ -1,7 +1,13 @@
-import React from "react";
+import { columns } from "./columns";
+import { DataTable } from "./data-table";
+import testTours from "@/components/appData/testTours";
 
-const page: React.FC = () => {
-  return <div>published tours</div>;
-};
+export default async function DemoPage() {
+  const data = testTours;
 
-export default page;
+  return (
+    <div className="container mx-auto py-10">
+      <DataTable columns={columns} data={data} />
+    </div>
+  );
+}

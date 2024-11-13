@@ -26,7 +26,7 @@ export default function Layout({
             <SidebarTrigger className="-ml-1" />
           </div>
         </header>
-        <div className="">{children}</div>
+        <div className="p-4">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );

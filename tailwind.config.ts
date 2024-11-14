@@ -16,6 +16,9 @@ export default {
       xl: "1440px",
     },
     extend: {
+      boxShadow: {
+        dashboard: "0 0.25rem 0.875rem 0 rgba(38, 43, 67, 0.16)",
+      },
       colors: {
         beige: "#f1dbb7",
         yellow: "#faab36",

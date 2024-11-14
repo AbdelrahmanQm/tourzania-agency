@@ -12,6 +12,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export type Tour = {
   id: string;
@@ -27,6 +29,11 @@ export const columns: ColumnDef<Tour>[] = [
   {
     accessorKey: "status",
     header: () => <div className="">Status</div>,
+    cell: ({ row }) => {
+      const tour = row.original;
+
+      return <Badge>{tour.status}</Badge>;
+    },
   },
   {
     accessorKey: "name",

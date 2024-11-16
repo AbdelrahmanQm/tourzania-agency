@@ -6,6 +6,7 @@ import {
   CircleX,
   CircleEllipsis,
   CirclePause,
+  X,
 } from "lucide-react";
 import {
   ColumnDef,
@@ -15,8 +16,10 @@ import {
   useReactTable,
   SortingState,
   getSortedRowModel,
+  getFacetedRowModel,
   ColumnFiltersState,
   getFilteredRowModel,
+  getFacetedUniqueValues,
 } from "@tanstack/react-table";
 import { DataTablePagination } from "./data-table-pagination";
 import {
@@ -29,6 +32,7 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { DataTableFacetedFilter } from "./data-table-faceted-filter";
+import { Button } from "@/components/ui/button";
 
 const statuses = [
   {
@@ -70,17 +74,29 @@ export function DataTable<TData, TValue>({
   const table = useReactTable({
     data,
     columns,
+
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFacetedRowModel: getFacetedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
     state: {
       sorting,
       columnFilters,
     },
+    filterFns: {
+      // Add a custom filter function for the status column
+      status: (row, columnId, filterValues) => {
+        if (!filterValues.length) return true;
+        const status = row.getValue(columnId);
+        return filterValues.includes(status);
+      },
+    },
   });
+  const isFiltered = table.getState().columnFilters.length > 0;
   return (
     <div>
       <div className="flex items-center py-4">
@@ -101,6 +117,16 @@ export function DataTable<TData, TValue>({
             />
           )}
         </div>
+        {isFiltered && (
+          <Button
+            variant="ghost"
+            onClick={() => table.resetColumnFilters()}
+            className="h-8 px-2 lg:px-3"
+          >
+            Reset
+            <X />
+          </Button>
+        )}
       </div>
       <div className="rounded-lg bg-white shadow-dashboard">
         <Table>

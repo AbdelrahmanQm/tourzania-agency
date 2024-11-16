@@ -20,16 +20,8 @@ export const sideBarLinks = [
         url: "#",
       },
       {
-        title: "Published Tours",
-        url: "/dashboard/published-tours",
-      },
-      {
-        title: "Pending Review",
-        url: "#",
-      },
-      {
-        title: "Rejected Tours",
-        url: "#",
+        title: "All Tours",
+        url: "/dashboard/all-tours",
       },
     ],
   },

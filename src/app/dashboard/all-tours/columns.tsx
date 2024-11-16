@@ -29,6 +29,7 @@ export const columns: ColumnDef<Tour>[] = [
   {
     accessorKey: "status",
     header: () => <div className="">Status</div>,
+
     cell: ({ row }) => {
       const tour = row.original;
 
@@ -61,6 +62,7 @@ export const columns: ColumnDef<Tour>[] = [
         );
       }
     },
+    filterFn: "status",
   },
   {
     accessorKey: "name",

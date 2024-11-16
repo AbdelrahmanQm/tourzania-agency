@@ -1,5 +1,12 @@
 "use client";
 import * as React from "react";
+
+import {
+  CircleCheckBig,
+  CircleX,
+  CircleEllipsis,
+  CirclePause,
+} from "lucide-react";
 import {
   ColumnDef,
   flexRender,
@@ -21,6 +28,30 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
+import { DataTableFacetedFilter } from "./data-table-faceted-filter";
+
+const statuses = [
+  {
+    value: "published",
+    label: "Published",
+    icon: CircleCheckBig,
+  },
+  {
+    value: "unpublished",
+    label: "Unpublished",
+    icon: CirclePause,
+  },
+  {
+    value: "pending",
+    label: "Pending",
+    icon: CircleEllipsis,
+  },
+  {
+    value: "rejected",
+    label: "Rejected",
+    icon: CircleX,
+  },
+];
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -54,13 +85,22 @@ export function DataTable<TData, TValue>({
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter Tours..."
+          placeholder="Search Tours..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm shadow-dashboard rounded-lg"
         />
+        <div className="ml-4">
+          {table.getColumn("status") && (
+            <DataTableFacetedFilter
+              column={table.getColumn("status")}
+              title="Status"
+              options={statuses}
+            />
+          )}
+        </div>
       </div>
       <div className="rounded-lg bg-white shadow-dashboard">
         <Table>

@@ -36,6 +36,9 @@ export default {
         lightgray: "#d3dce6",
         graybg: "#f6f6f6",
         section: "#666",
+        solidgreen: "#3aba16",
+        solidred: "#ba1629",
+        solidblue: "#164aba",
         background: "var(--background)",
         foreground: "var(--foreground)",
         sidebar: {
@@ -56,5 +59,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  /* plugins: [require("tailwindcss-animate")], */
 } satisfies Config;

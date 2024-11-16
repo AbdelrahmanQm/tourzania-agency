@@ -24,11 +24,11 @@ export const sideBarLinks = [
         url: "/dashboard/published-tours",
       },
       {
-        title: "Under Review",
+        title: "Pending Review",
         url: "#",
       },
       {
-        title: "Rejected",
+        title: "Rejected Tours",
         url: "#",
       },
     ],

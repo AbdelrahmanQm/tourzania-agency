@@ -7,7 +7,8 @@ export default async function DemoPage() {
 
   return (
     <div className="container mx-auto pt-4 pb-10">
-      <h2 className="text-section text-3xl">Published Tours</h2>
+      <h2 className="text-section text-3xl">All Tours</h2>
+
       <DataTable columns={columns} data={data} />
     </div>
   );

@@ -28,7 +28,7 @@ interface MultiSelectorProps
 
 interface MultiSelectContextProps {
   value: string[];
-  onValueChange: (value: string[]) => void;
+  onValueChange: (value: string) => void;
   open: boolean;
   setOpen: (value: boolean) => void;
   inputValue: string;
@@ -230,9 +230,9 @@ const MultiSelectorTrigger = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "flex flex-wrap gap-1 p-1 py-2 ring-1 ring-muted rounded-lg bg-background",
+        "flex flex-wrap gap-1 p-1  py-2 ring-1 ring-muted rounded-lg bg-white",
         {
-          "ring-1 focus-within:ring-ring": activeIndex === -1,
+          "ring-0 focus-within:ring-ring": activeIndex === -1,
         },
         className
       )}
@@ -293,7 +293,7 @@ const MultiSelectorInput = forwardRef<
       onFocus={() => setOpen(true)}
       onClick={() => setActiveIndex(-1)}
       className={cn(
-        "ml-2 bg-transparent outline-none placeholder:text-muted-foreground flex-1",
+        " bg-transparent outline outline-grayLine rounded-md p-1 placeholder:text-muted-foreground flex-1 ",
         className,
         activeIndex !== -1 && "caret-transparent"
       )}
@@ -325,7 +325,7 @@ const MultiSelectorList = forwardRef<
     <CommandList
       ref={ref}
       className={cn(
-        "p-2 flex flex-col gap-2 rounded-md scrollbar-thin scrollbar-track-transparent transition-colors scrollbar-thumb-muted-foreground dark:scrollbar-thumb-muted scrollbar-thumb-rounded-lg w-full absolute bg-background shadow-md z-10 border border-muted top-0",
+        "p-2 flex  flex-col gap-2 rounded-md scrollbar-thin scrollbar-track-transparent transition-colors scrollbar-thumb-muted-foreground dark:scrollbar-thumb-muted scrollbar-thumb-rounded-lg w-full absolute bg-white shadow-md z-10 border border-muted top-0",
         className
       )}
     >

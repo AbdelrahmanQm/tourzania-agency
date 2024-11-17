@@ -17,6 +17,7 @@ const SideBarImage: React.FC = () => {
             height={70}
             width={50}
             className=""
+            priority={true}
           />
           <Image
             src={logoText}
@@ -24,6 +25,7 @@ const SideBarImage: React.FC = () => {
             height={70}
             width={350}
             className=""
+            priority={true}
           />
         </div>
       ) : (
@@ -33,6 +35,7 @@ const SideBarImage: React.FC = () => {
           height={70}
           width={50}
           className="max-h-7 max-w-5"
+          priority={true}
         />
       )}
     </div>

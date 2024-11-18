@@ -56,7 +56,7 @@ import {
 } from "@/components/appData/toursApi";
 
 const formSchema = z.object({
-  name_6034721631: z.string().min(7).max(20),
+  name_6034721631: z.string().min(7).max(48),
   name_5457212837: z.number().min(1).max(15),
   name_3225096549: z.string(),
   name_3804163462: z.string().min(100),
@@ -145,7 +145,7 @@ export default function MyForm() {
                       <Input placeholder="Tour Name" type="text" {...field} />
                     </FormControl>
                     <FormDescription>
-                      Tour name must be 8 - 20 characters long.
+                      Tour name must be 8 - 48 characters long.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -706,7 +706,9 @@ export default function MyForm() {
                   name="name_1598448048"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Typical Price.</FormLabel>
+                      <FormLabel className="text-solidgreen">
+                        Typical Price.
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="Price." type="number" {...field} />
                       </FormControl>
@@ -723,7 +725,9 @@ export default function MyForm() {
                   name="name_7274870516"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Occasional Price.</FormLabel>
+                      <FormLabel className="text-orange">
+                        Occasional Price.
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="Price." type="number" {...field} />
                       </FormControl>
@@ -740,7 +744,9 @@ export default function MyForm() {
                   name="name_2399804365"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Exceptional Price.</FormLabel>
+                      <FormLabel className="text-rose-700">
+                        Exceptional Price.
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="Price." type="number" {...field} />
                       </FormControl>
@@ -883,98 +889,100 @@ export default function MyForm() {
             </div>
           </div>
         </div>
-
-        <FormField
-          control={form.control}
-          name="name_0283962395"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Cover Image</FormLabel>
-              <FormControl>
-                <FileUploader
-                  value={files}
-                  onValueChange={setFiles}
-                  dropzoneOptions={dropZoneConfig}
-                  className="relative bg-background rounded-lg p-2"
-                >
-                  <FileInput
-                    id="fileInput"
-                    className="outline-dashed outline-1 outline-slate-500"
+        <div className="bg-white p-8 rounded-lg shadow-dashboard">
+          <p className="text-2xl text-slate-500 font-bold  pb-1 mb-4">Images</p>
+          <FormField
+            control={form.control}
+            name="name_0283962395"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Cover Image</FormLabel>
+                <FormControl>
+                  <FileUploader
+                    value={files}
+                    onValueChange={setFiles}
+                    dropzoneOptions={dropZoneConfig}
+                    className="relative bg-background rounded-lg p-2"
                   >
-                    <div className="flex items-center justify-center flex-col p-8 w-full ">
-                      <CloudUpload className="text-gray-500 w-10 h-10" />
-                      <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                        <span className="font-semibold">Click to upload</span>
-                        &nbsp; or drag and drop
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
-                        SVG, PNG, JPG or GIF
-                      </p>
-                    </div>
-                  </FileInput>
-                  <FileUploaderContent>
-                    {files &&
-                      files.length > 0 &&
-                      files.map((file, i) => (
-                        <FileUploaderItem key={i} index={i}>
-                          <Paperclip className="h-4 w-4 stroke-current" />
-                          <span>{file.name}</span>
-                        </FileUploaderItem>
-                      ))}
-                  </FileUploaderContent>
-                </FileUploader>
-              </FormControl>
-              <FormDescription>Select cover image</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                    <FileInput
+                      id="fileInput"
+                      className="outline-dashed outline-1 outline-slate-500"
+                    >
+                      <div className="flex items-center justify-center flex-col p-8 w-full ">
+                        <CloudUpload className="text-gray-500 w-10 h-10" />
+                        <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
+                          <span className="font-semibold">Click to upload</span>
+                          &nbsp; or drag and drop
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          SVG, PNG, JPG or GIF
+                        </p>
+                      </div>
+                    </FileInput>
+                    <FileUploaderContent>
+                      {files &&
+                        files.length > 0 &&
+                        files.map((file, i) => (
+                          <FileUploaderItem key={i} index={i}>
+                            <Paperclip className="h-4 w-4 stroke-current" />
+                            <span>{file.name}</span>
+                          </FileUploaderItem>
+                        ))}
+                    </FileUploaderContent>
+                  </FileUploader>
+                </FormControl>
+                <FormDescription>Select cover image</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="name_4971604115"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Tour Images</FormLabel>
-              <FormControl>
-                <FileUploader
-                  value={files}
-                  onValueChange={setFiles}
-                  dropzoneOptions={dropZoneConfig}
-                  className="relative bg-background rounded-lg p-2"
-                >
-                  <FileInput
-                    id="fileInput"
-                    className="outline-dashed outline-1 outline-slate-500"
+          <FormField
+            control={form.control}
+            name="name_4971604115"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Tour Images</FormLabel>
+                <FormControl>
+                  <FileUploader
+                    value={files}
+                    onValueChange={setFiles}
+                    dropzoneOptions={dropZoneConfig}
+                    className="relative bg-background rounded-lg p-2"
                   >
-                    <div className="flex items-center justify-center flex-col p-8 w-full ">
-                      <CloudUpload className="text-gray-500 w-10 h-10" />
-                      <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-                        <span className="font-semibold">Click to upload</span>
-                        &nbsp; or drag and drop
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
-                        SVG, PNG, JPG or GIF
-                      </p>
-                    </div>
-                  </FileInput>
-                  <FileUploaderContent>
-                    {files &&
-                      files.length > 0 &&
-                      files.map((file, i) => (
-                        <FileUploaderItem key={i} index={i}>
-                          <Paperclip className="h-4 w-4 stroke-current" />
-                          <span>{file.name}</span>
-                        </FileUploaderItem>
-                      ))}
-                  </FileUploaderContent>
-                </FileUploader>
-              </FormControl>
-              <FormDescription>Selec tour images.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                    <FileInput
+                      id="fileInput"
+                      className="outline-dashed outline-1 outline-slate-500"
+                    >
+                      <div className="flex items-center justify-center flex-col p-8 w-full ">
+                        <CloudUpload className="text-gray-500 w-10 h-10" />
+                        <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
+                          <span className="font-semibold">Click to upload</span>
+                          &nbsp; or drag and drop
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          SVG, PNG, JPG or GIF
+                        </p>
+                      </div>
+                    </FileInput>
+                    <FileUploaderContent>
+                      {files &&
+                        files.length > 0 &&
+                        files.map((file, i) => (
+                          <FileUploaderItem key={i} index={i}>
+                            <Paperclip className="h-4 w-4 stroke-current" />
+                            <span>{file.name}</span>
+                          </FileUploaderItem>
+                        ))}
+                    </FileUploaderContent>
+                  </FileUploader>
+                </FormControl>
+                <FormDescription>Selec tour images.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <Button type="submit">Create Tour</Button>
       </form>
     </Form>

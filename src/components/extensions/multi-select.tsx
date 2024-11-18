@@ -203,7 +203,7 @@ const MultiSelector = ({
       <Command
         onKeyDown={handleKeyDown}
         className={cn(
-          "overflow-visible bg-transparent flex flex-col space-y-2",
+          "overflow-visible bg-transparent flex flex-col space-y-0",
           className
         )}
         dir={dir}

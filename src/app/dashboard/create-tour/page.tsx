@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { toast } from "sonner";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { cn } from "@/lib/utils";
@@ -14,8 +14,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  useFormField,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+/* import { Input } from "@/components/ui/input"; */
 import {
   Select,
   SelectContent,
@@ -23,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+/* import { Textarea } from "@/components/ui/textarea"; */
 import {
   MultiSelector,
   MultiSelectorContent,
@@ -54,12 +55,21 @@ import {
   features,
   includes,
 } from "@/components/appData/toursApi";
+import { Input, RadioGroup, Radio, Textarea } from "@nextui-org/react";
 
 const formSchema = z.object({
-  name_6034721631: z.string().min(7).max(48),
-  name_5457212837: z.number().min(1).max(15),
+  name_6034721631: z
+    .string()
+    .min(7, "Name must be 8 - 48 characters")
+    .max(48, "Name must be 8 - 48 characters"),
+  name_5457212837: z.coerce
+    .number()
+    .min(1, "Duration can't be less than 1")
+    .max(15, "Duration can't be more than 15"),
   name_3225096549: z.string(),
-  name_3804163462: z.string().min(100),
+  name_3804163462: z
+    .string()
+    .min(100, "Description must be at least 100 characters"),
   name_6155064933: z.array(z.string()).nonempty("Please at least one item"),
   name_5658997276: z.array(z.string()).nonempty("Please at least one item"),
   name_1415474687: z.string().min(80),
@@ -138,36 +148,40 @@ export default function MyForm() {
               <FormField
                 control={form.control}
                 name="name_6034721631"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Tour Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Tour Name" type="text" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      Tour name must be 8 - 48 characters long.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  const { error } = useFormField();
+                  return (
+                    <Input
+                      label="Tour Name"
+                      type="text"
+                      variant="bordered"
+                      errorMessage={error?.message}
+                      isInvalid={!!error?.message}
+                      color="primary"
+                      {...field}
+                    />
+                  );
+                }}
               />
             </div>
             <div className="col-span-3">
               <FormField
                 control={form.control}
                 name="name_5457212837"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Duration</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Duration" type="number" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      Duration must be a number between 1 and 15
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  const { error } = useFormField();
+                  return (
+                    <Input
+                      label="Duration"
+                      type="number"
+                      errorMessage={error?.message}
+                      isInvalid={!!error?.message}
+                      color="primary"
+                      variant="bordered"
+                      {...field}
+                    />
+                  );
+                }}
               />
             </div>
 
@@ -175,29 +189,22 @@ export default function MyForm() {
               <FormField
                 control={form.control}
                 name="name_3225096549"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Unit</FormLabel>
-                    <Select
+                render={({ field }) => {
+                  const { error } = useFormField();
+                  return (
+                    <RadioGroup
+                      {...field}
                       onValueChange={field.onChange}
                       defaultValue={field.value}
+                      errorMessage={error?.message}
+                      isInvalid={!!error?.message}
+                      color="primary"
                     >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Unit" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="hours">Hours</SelectItem>
-                        <SelectItem value="days">Days</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormDescription>
-                      Duration unit must be days or hours
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                      <Radio value="days">Days</Radio>
+                      <Radio value="Hours">Hours</Radio>
+                    </RadioGroup>
+                  );
+                }}
               />
             </div>
           </div>
@@ -205,22 +212,20 @@ export default function MyForm() {
           <FormField
             control={form.control}
             name="name_3804163462"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Description"
-                    className="resize-none"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>
-                  Tour Description must be at least 100 characters.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              const { error } = useFormField();
+              return (
+                <Textarea
+                  label="Description"
+                  color="primary"
+                  variant="bordered"
+                  errorMessage={error?.message}
+                  isInvalid={!!error?.message}
+                  className="resize-none mt-4"
+                  {...field}
+                />
+              );
+            }}
           />
         </div>
 

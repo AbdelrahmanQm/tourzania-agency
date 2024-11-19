@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
+    "@nextui-org/react": "^2.4.8",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-collapsible": "^1.1.1",
     "@radix-ui/react-dialog": "^1.1.2",
@@ -28,6 +29,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "date-fns": "^4.1.0",
+    "framer-motion": "^11.11.17",
     "lib-utils-ts": "^0.0.0-test",
     "lucide-react": "^0.456.0",
     "motion": "^11.11.15",
